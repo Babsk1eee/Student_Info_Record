@@ -3,14 +3,17 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Display display = new Display();
+        
+        int choice;
 
-        System.out.print("What is your name? : ");
-        String name = scanner.nextLine();
+        do {
+            display.display_interface();
+            System.out.println("Your choice: ");
+            choice = scanner.nextInt();
 
-        System.out.print("How old are you? : ");
-        int age = scanner.nextInt();
-
-        System.out.println("Hello " + name + " you are " + age + " years old.");
+            scanner.close();
+        } while (choice != 0);
 
 
         scanner.close();
