@@ -29,6 +29,7 @@ stud no. | name (last name - alphabetically order) | sex | course | section
 
 [0] Exit
 
+--------------------------------------------------------------------------------
 
 table  (output sorting):
 
