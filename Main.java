@@ -3,18 +3,23 @@ import java.util.*;
 public class Main{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Display display = new Display();
+        Display display = new Display(scanner);
         
         int choice;
 
-        do {
-            display.display_interface();
-            System.out.println("Your choice: ");
-            choice = scanner.nextInt();
+        display.display_interface();
+        System.out.print("Your choice: ");
+        choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline after nextInt()
 
-            scanner.close();
-        } while (choice != 0);
-
+        switch (choice) {
+            case 1:
+                display.addStudent();
+                break;
+        
+            default:
+                break;
+        }
 
         scanner.close();
     }
