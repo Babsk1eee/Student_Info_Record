@@ -7,6 +7,10 @@ public class Main{
         
         int choice;
 
+        System.out.print("What is your name? : ");
+        String name = scanner.nextLine();
+        System.out.println("Hello " + name); //ignore this
+
         display.display_interface();
         System.out.print("Your choice: ");
         choice = scanner.nextInt();
