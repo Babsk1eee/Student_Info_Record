@@ -1,28 +1,15 @@
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Display {
-    
+
     private Scanner scanner;
-    StudentData studentData = new StudentData(null, null, null, null, null);
+    private StudentDataBase studentDB;
 
-    public Display(Scanner scanner) {
+    public Display(Scanner scanner, StudentDataBase studentDB) {
         this.scanner = scanner;
-    }
-
-    // Method to display the menu
-    public void display_interface() {
-
-        System.out.println("\n\n\n========== Student Information System ==========");
-        
-        System.out.println();
-        
-        System.out.println("[1] Add Student");
-        System.out.println("[2] Display All Student");
-        System.out.println("[3] Search Student");
-        System.out.println("[4] Delete Student");
-        System.out.println("[0] Exit");
-        
-        System.out.println();
+        this.studentDB = studentDB;
     }
 
     // Method to add student
@@ -49,11 +36,56 @@ public class Display {
         System.out.print("Your Input: ");
         String section = scanner.nextLine();
 
-        studentData = new StudentData(fullName, course, section, studentNo, sex);
+        studentDB.addStudent(fullName, course, section, studentNo, sex);
+    }
+public void searchStudent() {
+    System.out.print("Enter name, student number, or section to search: ");
+    String keyword = scanner.nextLine();
+    studentDB.searchStudent(keyword); // This method must exist in StudentDataBase
+}
+    // Method to display the menu
+    public void display_interface() {
+
+        System.out.println("\n\n\n========== Student Information System ==========");
+        
+        System.out.println();
+        
+        System.out.println("[1] Add Student");
+        System.out.println("[2] Display All Student");
+        System.out.println("[3] Search Student");
+        System.out.println("[4] Delete/Edit Student");
+        System.out.println("[0] Exit");
+        
+        System.out.println();
+    }
+    // Displays All Students
+public void displayAllStudent() {
+    List<StudentData> students = studentDB.getAllStudents(); // get the list from DB
+
+    if (students.isEmpty()) {
+        System.out.println("No students found.");
+        return;
     }
 
-    // Displays All Students
-    public void displayAllStudent() {
+    // Sort alphabetically by last name
+    students.sort(Comparator.comparing(s -> {
+        String[] parts = s.getFullName().split(",");
+        return parts[0].trim().toLowerCase(); // assuming "LastName, FirstName MI"
+    }));
 
+    System.out.println("\n============== Student Data: ==============");
+    System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n", "Student No", "Name", "Sex", "Course", "Section");
+    System.out.println("---------------------------------------------------------------");
+
+    for (StudentData s : students) {
+        System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n",
+                s.getStudentNo(),
+                s.getFullName(),
+                s.getSex(),
+                s.getCourse(),
+                s.getSection());
     }
 }
+
+
+    }

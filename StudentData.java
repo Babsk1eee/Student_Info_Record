@@ -35,7 +35,7 @@ public class StudentData {
         return sex;
     }
     
-
+@Override
     public String toString() {
         return studentNo + " | " + fullName + " | " + " | " + sex + " | " + course + " | " + section;
     }
