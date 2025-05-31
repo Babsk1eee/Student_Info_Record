@@ -7,7 +7,7 @@ public class StudentDataBase {
     private List<StudentData> studentList = new ArrayList<>();
     private static final String FILE_NAME = "studentData.dat";
     
-    // This method reads the student data from the file
+    // Method that reads the student data from the file and load it
     public StudentDataBase() {
         loadStudentData();
     }
