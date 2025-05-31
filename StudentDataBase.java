@@ -38,13 +38,17 @@ public class StudentDataBase {
 
     // Method for loading the student data from the file
     private void loadStudentData() {
+
         File file = new File(FILE_NAME);
+        
+        // Check if the file exists
         if (!file.exists() || file.length() == 0) {
             System.out.println("There is no " + FILE_NAME + " file.");
             studentList = new ArrayList<>();
             return;
         }
 
+        // Try to load the data from the file
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             studentList = (List<StudentData>) ois.readObject();
         } catch (Exception e) {
@@ -55,13 +59,18 @@ public class StudentDataBase {
 
     // ✅ Method to search for students
     public void searchStudent(String keyword) {
+        
+        // Check if the keyword is empty
         boolean found = false;
         keyword = keyword.toLowerCase();
 
+        // Iterate through the list of students
         for (StudentData student : studentList) {
              String[] nameParts = student.getFullName().toLowerCase().split("[,\\s]+");
 
         boolean nameMatches = false;
+
+        // Check if the keyword matches any part of the student's name
         for (String part : nameParts) {
             if (part.contains(keyword)) {
                 nameMatches = true;
@@ -69,14 +78,17 @@ public class StudentDataBase {
             }
         }
 
+        // Check if the keyword matches the student's Section
         boolean sectionMatches = student.getSection().toLowerCase().contains(keyword);
 
+        // If the keyword matches either the name or the section, print the student's data
         if (nameMatches || sectionMatches) {
             System.out.println(student); // uses toString()
             found = true;
         }
     }
 
+    // If no students were found, print a message
     if (!found) {
         System.out.println("No matching student found.");
     }
