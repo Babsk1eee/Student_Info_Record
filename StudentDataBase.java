@@ -7,10 +7,12 @@ public class StudentDataBase {
     private List<StudentData> studentList = new ArrayList<>();
     private static final String FILE_NAME = "studentData.dat";
     
+    // This method reads the student data from the file
     public StudentDataBase() {
         loadStudentData();
     }
 
+    // Method for adding a student to the Array and saves it to the file
     public void addStudent(String fullName, String course, String section, String studentNo, String sex) {
         StudentData student = new StudentData(fullName, course, section, studentNo, sex);
 
@@ -24,6 +26,7 @@ public class StudentDataBase {
         
     }
 
+    // Method for adding the student to the file
     private void saveStudentData() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(studentList);
@@ -33,6 +36,7 @@ public class StudentDataBase {
         }
     }
 
+    // Method for loading the student data from the file
     private void loadStudentData() {
         File file = new File(FILE_NAME);
         if (!file.exists() || file.length() == 0) {
