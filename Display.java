@@ -38,11 +38,13 @@ public class Display {
 
         studentDB.addStudent(fullName, course, section, studentNo, sex);
     }
-public void searchStudent() {
-    System.out.print("Enter name, student number, or section to search: ");
-    String keyword = scanner.nextLine();
-    studentDB.searchStudent(keyword); // This method must exist in StudentDataBase
-}
+
+    public void searchStudent() {
+        System.out.print("Enter name, student number, or section to search: ");
+        String keyword = scanner.nextLine();
+        studentDB.searchStudent(keyword); // This method must exist in StudentDataBase
+    }
+
     // Method to display the menu
     public void display_interface() {
 
@@ -58,14 +60,15 @@ public void searchStudent() {
         
         System.out.println();
     }
-    // Displays All Students
-public void displayAllStudent() {
-    List<StudentData> students = studentDB.getAllStudents(); // get the list from DB
 
-    if (students.isEmpty()) {
-        System.out.println("No students found.");
-        return;
-    }
+    // Displays All Students
+    public void displayAllStudent() {
+        List<StudentData> students = studentDB.getAllStudents(); // get the list from DB
+
+        if (students.isEmpty()) {
+            System.out.println("No students found.");
+            return;
+        }
 
     // Sort alphabetically by last name
     students.sort(Comparator.comparing(s -> {
@@ -86,6 +89,4 @@ public void displayAllStudent() {
                 s.getSection());
     }
 }
-
-
-    }
+}
