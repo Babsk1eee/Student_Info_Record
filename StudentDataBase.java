@@ -1,32 +1,49 @@
-import java.io.*;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class StudentDataBase {
 
-    private ArrayList<StudentData> studentDataList = new ArrayList<>(); // ArrayList to store StudentData objects
-    private HashMap<String, StudentData> studentMap = new HashMap<>(); // HashMap to store StudentData objects with student ID as key and easy to find student data by ID
-
-    public void main(String fullName, String course, String section, String studentNo, String sex) {
-        if (studentMap.containsKey(studentNo)){ // Check if student ID already exists in HashMap
-            System.out.println("Student already exists.");
-            return;
-        }
-
-        StudentData student = new StudentData(fullName, course, section, studentNo, sex); // Create a new StudentData object
-
-        studentDataList.add(student); // Add the new StudentData object to the ArrayList
-        studentMap.put(studentNo, student); // Add the new StudentData object to the HashMap with student ID as key
-        System.out.println("Student Added Successfully!\n");
+    private List<StudentData> studentList = new ArrayList<>();
+    
+    public StudentDataBase() {
+        studentList = new ArrayList<>();
     }
 
-    // Method for saving student data to a file3
-    public void saveToFile(String studentData) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("studentData.txt"))) {
-            for (StudentData s : studentDataList) {
-                writer.println(String.join(s.getFullName(), s.getCourse(), s.getSection(), s.getStudentNo(), s.getSex()));
-            }
-        } catch (IOException e) {
+    public void addStudent(String fullName, String course, String section, String studentNo, String sex) {
+    studentList.add(new StudentData(fullName, course, section, studentNo, sex));
+}
 
+    // ✅ Method to search for students
+    public void searchStudent(String keyword) {
+        boolean found = false;
+        keyword = keyword.toLowerCase();
+
+        for (StudentData student : studentList) {
+             String[] nameParts = student.getFullName().toLowerCase().split("[,\\s]+");
+
+        boolean nameMatches = false;
+        for (String part : nameParts) {
+            if (part.contains(keyword)) {
+                nameMatches = true;
+                break;
+            }
         }
+
+        boolean sectionMatches = student.getSection().toLowerCase().contains(keyword);
+
+        if (nameMatches || sectionMatches) {
+            System.out.println(student); // uses toString()
+            found = true;
+        }
+    }
+
+    if (!found) {
+        System.out.println("No matching student found.");
+    }
+}
+
+    // (Optional) Method to get all students — useful for displayAllStudent()
+    public List<StudentData> getAllStudents() {
+        return studentList;
     }
 }
