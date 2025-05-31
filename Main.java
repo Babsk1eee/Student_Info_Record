@@ -7,42 +7,43 @@ public class Main{
         Display display = new Display(scanner, db);
         
         int choice;
-while (true){
-        display.display_interface();
-        System.out.print("Your choice: ");
 
-        if (!scanner.hasNext()){
-            System.out.println("Invalid input. Please enter a number.");
-            scanner.next();
-            continue;
-        }
+    while (true){
+            display.display_interface();
+            System.out.print("Your choice: ");
 
-        choice = scanner.nextInt();
-        scanner.nextLine(); // consume newline after nextInt()
+            if (!scanner.hasNext()){
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
+                continue;
+            }
 
-        switch (choice) {
-            case 1:
-                display.addStudent();
+            choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline after nextInt()
+
+            switch (choice) {
+                case 1:
+                    display.addStudent();
+                    break;
+                case 2:
+                    display.displayAllStudent();
+                    break;
+                case 3:
+                    display.searchStudent();
                 break;
-            case 2:
-                display.displayAllStudent();
-                break;
-            case 3:
-                display.searchStudent();
-                break;
-            case 4:
-                display.searchStudent(); //please change display.searchStudent() to display.deleteStudent()
-                break;
-            case 0:
-                System.out.println("Exiting the program...");
-                scanner.close();
-                return;
+                case 4:
+                    display.searchStudent(); //please change display.searchStudent() to display.deleteStudent()
+                    break;
+                case 0:
+                    System.out.println("Exiting the program...");
+                    scanner.close();
+                    return;
         
-            default:
-                System.out.println("Invalid choice. Please try again.");
-        }
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
         
-        System.out.println();
+            System.out.println();
     }
-}
+    }
 }
