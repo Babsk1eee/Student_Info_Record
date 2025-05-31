@@ -1,17 +1,53 @@
+import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
 public class StudentDataBase {
 
     private List<StudentData> studentList = new ArrayList<>();
+    private static final String FILE_NAME = "studentData.dat";
     
     public StudentDataBase() {
-        studentList = new ArrayList<>();
+        loadStudentData();
     }
 
     public void addStudent(String fullName, String course, String section, String studentNo, String sex) {
-    studentList.add(new StudentData(fullName, course, section, studentNo, sex));
-}
+        StudentData student = new StudentData(fullName, course, section, studentNo, sex);
+
+        if (!studentList.contains(student)) {
+            studentList.add(student);
+            System.out.println("Student added.");
+            saveStudentData();
+        } else {
+            System.out.println("Student already exists.");
+        }
+        
+    }
+
+    private void saveStudentData() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            oos.writeObject(studentList);
+            System.out.println("Student data saved.");
+        } catch (IOException e) {
+            System.out.println("Error saving student data." + e.getMessage());
+        }
+    }
+
+    private void loadStudentData() {
+        File file = new File(FILE_NAME);
+        if (!file.exists() || file.length() == 0) {
+            System.out.println("There is no " + FILE_NAME + " file.");
+            studentList = new ArrayList<>();
+            return;
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
+            studentList = (List<StudentData>) ois.readObject();
+        } catch (Exception e) {
+            System.out.println("Error loading student data." + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     // ✅ Method to search for students
     public void searchStudent(String keyword) {
