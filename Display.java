@@ -7,7 +7,9 @@ public class Display {
     private Scanner scanner;
     private StudentDataBase studentDB;
 
+    // Constructor for Display class
     public Display(Scanner scanner, StudentDataBase studentDB) {
+        // Initialize the scanner and studentDB
         this.scanner = scanner;
         this.studentDB = studentDB;
     }
@@ -39,6 +41,7 @@ public class Display {
         studentDB.addStudent(fullName, course, section, studentNo, sex);
     }
 
+    // Method to search student
     public void searchStudent() {
         System.out.print("Enter name, student number, or section to search: ");
         String keyword = scanner.nextLine();
@@ -70,23 +73,23 @@ public class Display {
             return;
         }
 
-    // Sort alphabetically by last name
-    students.sort(Comparator.comparing(s -> {
-        String[] parts = s.getFullName().split(",");
-        return parts[0].trim().toLowerCase(); // assuming "LastName, FirstName MI"
-    }));
+        // Sort alphabetically by last name
+        students.sort(Comparator.comparing(s -> {
+            String[] parts = s.getFullName().split(",");
+            return parts[0].trim().toLowerCase(); // assuming "LastName, FirstName MI"
+        }));
 
-    System.out.println("\n============== Student Data: ==============");
-    System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n", "Student No", "Name", "Sex", "Course", "Section");
-    System.out.println("---------------------------------------------------------------");
+        System.out.println("\n============== Student Data: ==============");
+        System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n", "Student No", "Name", "Sex", "Course", "Section");
+        System.out.println("---------------------------------------------------------------");
 
-    for (StudentData s : students) {
-        System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n",
-                s.getStudentNo(),
-                s.getFullName(),
-                s.getSex(),
-                s.getCourse(),
-                s.getSection());
+        for (StudentData s : students) {
+            System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n",
+                    s.getStudentNo(),
+                    s.getFullName(),
+                    s.getSex(),
+                    s.getCourse(),
+                    s.getSection());
+        }
     }
-}
 }
