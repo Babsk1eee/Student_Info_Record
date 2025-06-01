@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Display {
 
-    private static Scanner scanner;
-    private static StudentDataBase studentDB;
+    private Scanner scanner;
+    private StudentDataBase studentDB;
 
     // Constructor for Display class
     public Display(Scanner scanner, StudentDataBase studentDB) {

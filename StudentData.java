@@ -61,11 +61,4 @@ public class StudentData implements Serializable {
     public String toString() {
         return studentNo + " | " + fullName + " | " + sex + " | " + course + " | " + section;
     }
-=======
-    
-    // Format for the display of the student data (Search Student)
-    @Override
-        public String toString() {
-            return studentNo + " | " + fullName + " | " + sex + " | " + course + " | " + section;
-        }
 }
