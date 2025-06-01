@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Display {
 
-    private Scanner scanner;
-    private StudentDataBase studentDB;
+    private static Scanner scanner;
+    private static StudentDataBase studentDB;
 
     // Constructor for Display class
     public Display(Scanner scanner, StudentDataBase studentDB) {
@@ -65,6 +65,9 @@ public class Display {
     }
 
     // Displays All Students
+    /**
+     * 
+     */
     public void displayAllStudent() {
         List<StudentData> students = studentDB.getAllStudents(); // get the list from DB
 
@@ -90,6 +93,45 @@ public class Display {
                     s.getSex(),
                     s.getCourse(),
                     s.getSection());
+        }
+    }
+
+    // Method for deleting student information
+    public void deleteStudent() {
+        System.out.print("Enter Student No. to delete: ");
+        String studentNo = scanner.nextLine();
+
+        boolean deleted = studentDB.deleteStudent(studentNo);
+        if (deleted) {
+            System.out.println("Student successfully deleted.");
+        } else {
+            System.out.println("Student not found.");
+        }
+    }
+
+    // method for editing student information
+    public void editStudent() {
+        System.out.print("Enter Student No. to edit: ");
+        String studentNo = scanner.nextLine();
+
+        System.out.print("Enter new full name (leave blank to keep current): ");
+        String newFullName = scanner.nextLine();
+
+        System.out.print("Enter new course (leave blank to keep current): ");
+        String newCourse = scanner.nextLine();
+
+        System.out.print("Enter new section (leave blank to keep current): ");
+        String newSection = scanner.nextLine();
+
+        System.out.print("Enter new sex (leave blank to keep current): ");
+        String newSex = scanner.nextLine();
+
+        boolean updated = studentDB.editStudent(studentNo, newFullName, newCourse, newSection, newSex);
+        
+        if (updated) {
+            System.out.println("Student information updated successfully.");
+        } else {
+            System.out.println("Student not found.");
         }
     }
 }
