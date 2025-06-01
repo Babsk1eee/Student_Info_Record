@@ -33,9 +33,9 @@ public class Main{
                 break;
                 case 4:
                     // edit / delete func
-                    System.out.println("[1] Edit Student");
+                    System.out.println("\n\n[1] Edit Student");
                     System.out.println("[2] Delete Student");
-                    System.out.print("Your choice: ");
+                    System.out.print("\nYour choice: ");
                     int subChoice = scanner.nextInt();
                     scanner.nextLine(); // Consume newline
 

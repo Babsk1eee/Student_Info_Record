@@ -19,10 +19,10 @@ public class StudentDataBase {
 
         if (!studentList.contains(student)) {
             studentList.add(student);
-            System.out.println("Student added.");
             saveStudentData();
+            System.out.println("Student data saved successfully.");
         } else {
-            System.out.println("Student already exists.");
+            System.out.println("\nStudent already exists.");
         }
         
     }
@@ -31,9 +31,8 @@ public class StudentDataBase {
     private void saveStudentData() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(studentList);
-            System.out.println("Student data saved.");
         } catch (IOException e) {
-            System.out.println("Error saving student data." + e.getMessage());
+            System.out.println("\nError saving student data." + e.getMessage());
         }
     }
 
@@ -84,7 +83,7 @@ public class StudentDataBase {
 
         // If the keyword matches either the name or the section, print the student's data
         if (nameMatches || sectionMatches) {
-            System.out.println(student); // uses toString()
+            System.out.println("\n" + student); // uses toString()
             found = true;
         }
     }
