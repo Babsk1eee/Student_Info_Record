@@ -2,12 +2,14 @@ import java.io.Serializable;
 
 public class StudentData implements Serializable {
 
+    // Field declarations
     String fullName;
     String course;
     String section;
     String studentNo;
     String sex;
 
+    // Constructor for StudentData
     public StudentData(String fullName, String course, String section, String studentNo, String sex) {
         this.fullName = fullName;
         this.course = course;
@@ -17,6 +19,7 @@ public class StudentData implements Serializable {
     }
 
 
+    // Getters 
     public String getFullName(){
         return fullName;
     }
@@ -58,4 +61,11 @@ public class StudentData implements Serializable {
     public String toString() {
         return studentNo + " | " + fullName + " | " + sex + " | " + course + " | " + section;
     }
+=======
+    
+    // Format for the display of the student data (Search Student)
+    @Override
+        public String toString() {
+            return studentNo + " | " + fullName + " | " + sex + " | " + course + " | " + section;
+        }
 }

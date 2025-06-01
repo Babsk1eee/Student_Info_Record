@@ -7,9 +7,11 @@ public class Display {
     private static Scanner scanner;
     private static StudentDataBase studentDB;
 
+    // Constructor for Display class
     public Display(Scanner scanner, StudentDataBase studentDB) {
-        Display.scanner = scanner;
-        Display.studentDB = studentDB;
+        // Initialize the scanner and studentDB
+        this.scanner = scanner;
+        this.studentDB = studentDB;
     }
 
     // Method to add student
@@ -39,6 +41,7 @@ public class Display {
         studentDB.addStudent(fullName, course, section, studentNo, sex);
     }
 
+    // Method to search student
     public void searchStudent() {
         System.out.print("Enter name, student number, or section to search: ");
         String keyword = scanner.nextLine();
