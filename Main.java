@@ -32,6 +32,7 @@ public class Main{
                     display.searchStudent();
                 break;
                 case 4:
+                    // edit / delete func
                     System.out.println("[1] Edit Student");
                     System.out.println("[2] Delete Student");
                     System.out.print("Your choice: ");

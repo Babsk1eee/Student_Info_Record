@@ -89,6 +89,7 @@ public class StudentDataBase {
     }
     
  
+    // edit sutdent function
     public boolean editStudent(String studentNoToEdit, String newFullName, String newCourse, String newSection, String newSex) {
             StudentData studentToEdit = findStudentByStudentNo(studentNoToEdit);
 

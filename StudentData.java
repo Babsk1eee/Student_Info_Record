@@ -37,6 +37,7 @@ public class StudentData implements Serializable {
         return sex;
     }
 
+    // setters
     public void setFullName(String fullName) {
     this.fullName = fullName;
     }

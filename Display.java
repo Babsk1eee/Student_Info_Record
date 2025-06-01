@@ -106,6 +106,7 @@ public class Display {
         }
     }
 
+    // method for editing student information
     public void editStudent() {
         System.out.print("Enter Student No. to edit: ");
         String studentNo = scanner.nextLine();
