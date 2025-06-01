@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Display {
 
-    private Scanner scanner;
-    private StudentDataBase studentDB;
+    private static Scanner scanner;
+    private static StudentDataBase studentDB;
 
     public Display(Scanner scanner, StudentDataBase studentDB) {
-        this.scanner = scanner;
-        this.studentDB = studentDB;
+        Display.scanner = scanner;
+        Display.studentDB = studentDB;
     }
 
     // Method to add student
@@ -62,6 +62,9 @@ public class Display {
     }
 
     // Displays All Students
+    /**
+     * 
+     */
     public void displayAllStudent() {
         List<StudentData> students = studentDB.getAllStudents(); // get the list from DB
 
@@ -70,23 +73,60 @@ public class Display {
             return;
         }
 
-    // Sort alphabetically by last name
-    students.sort(Comparator.comparing(s -> {
-        String[] parts = s.getFullName().split(",");
-        return parts[0].trim().toLowerCase(); // assuming "LastName, FirstName MI"
-    }));
+        // Sort alphabetically by last name
+        students.sort(Comparator.comparing(s -> {
+            String[] parts = s.getFullName().split(",");
+            return parts[0].trim().toLowerCase(); // assuming "LastName, FirstName MI"
+        }));
 
-    System.out.println("\n============== Student Data: ==============");
-    System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n", "Student No", "Name", "Sex", "Course", "Section");
-    System.out.println("---------------------------------------------------------------");
+        System.out.println("\n============== Student Data: ==============");
+        System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n", "Student No", "Name", "Sex", "Course", "Section");
+        System.out.println("---------------------------------------------------------------");
 
-    for (StudentData s : students) {
-        System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n",
-                s.getStudentNo(),
-                s.getFullName(),
-                s.getSex(),
-                s.getCourse(),
-                s.getSection());
+        for (StudentData s : students) {
+            System.out.printf("%-10s | %-25s | %-4s | %-10s | %-10s\n",
+                    s.getStudentNo(),
+                    s.getFullName(),
+                    s.getSex(),
+                    s.getCourse(),
+                    s.getSection());
+        }
     }
-}
+
+    public void deleteStudent() {
+        System.out.print("Enter Student No. to delete: ");
+        String studentNo = scanner.nextLine();
+
+        boolean deleted = studentDB.deleteStudent(studentNo);
+        if (deleted) {
+            System.out.println("Student successfully deleted.");
+        } else {
+            System.out.println("Student not found.");
+        }
+    }
+
+    public void editStudent() {
+        System.out.print("Enter Student No. to edit: ");
+        String studentNo = scanner.nextLine();
+
+        System.out.print("Enter new full name (leave blank to keep current): ");
+        String newFullName = scanner.nextLine();
+
+        System.out.print("Enter new course (leave blank to keep current): ");
+        String newCourse = scanner.nextLine();
+
+        System.out.print("Enter new section (leave blank to keep current): ");
+        String newSection = scanner.nextLine();
+
+        System.out.print("Enter new sex (leave blank to keep current): ");
+        String newSex = scanner.nextLine();
+
+        boolean updated = studentDB.editStudent(studentNo, newFullName, newCourse, newSection, newSex);
+        
+        if (updated) {
+            System.out.println("Student information updated successfully.");
+        } else {
+            System.out.println("Student not found.");
+        }
+    }
 }
