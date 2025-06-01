@@ -43,7 +43,7 @@ public class Display {
 
     // Method to search student
     public void searchStudent() {
-        System.out.print("Enter name, student number, or section to search: ");
+        System.out.print("Enter name or section to search: ");
         String keyword = scanner.nextLine();
         studentDB.searchStudent(keyword); // This method must exist in StudentDataBase
     }
