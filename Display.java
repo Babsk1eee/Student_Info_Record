@@ -18,7 +18,7 @@ public class Display {
     public void addStudent() {
         // Use the scanner field instead of creating a new Scanner
 
-        System.out.println("Enter your name (Last Name, First Name M.I.)");
+        System.out.println("\n\nEnter your name (Last Name, First Name M.I.)");
         System.out.print("Your Input: ");
         String fullName = scanner.nextLine();
 
@@ -43,7 +43,7 @@ public class Display {
 
     // Method to search student
     public void searchStudent() {
-        System.out.print("Enter name or section to search: ");
+        System.out.print("\n\nEnter name or section to search: ");
         String keyword = scanner.nextLine();
         studentDB.searchStudent(keyword); // This method must exist in StudentDataBase
     }
@@ -98,12 +98,12 @@ public class Display {
 
     // Method for deleting student information
     public void deleteStudent() {
-        System.out.print("Enter Student No. to delete: ");
+        System.out.print("\n\nEnter Student No. to delete: ");
         String studentNo = scanner.nextLine();
 
         boolean deleted = studentDB.deleteStudent(studentNo);
         if (deleted) {
-            System.out.println("Student successfully deleted.");
+            System.out.println("\nStudent successfully deleted.");
         } else {
             System.out.println("Student not found.");
         }
@@ -111,10 +111,10 @@ public class Display {
 
     // method for editing student information
     public void editStudent() {
-        System.out.print("Enter Student No. to edit: ");
+        System.out.print("\n\nEnter Student No. to edit: ");
         String studentNo = scanner.nextLine();
 
-        System.out.print("Enter new full name (leave blank to keep current): ");
+        System.out.print("\nEnter new full name (leave blank to keep current): ");
         String newFullName = scanner.nextLine();
 
         System.out.print("Enter new course (leave blank to keep current): ");
@@ -125,6 +125,8 @@ public class Display {
 
         System.out.print("Enter new sex (leave blank to keep current): ");
         String newSex = scanner.nextLine();
+
+        System.out.println("\n");
 
         boolean updated = studentDB.editStudent(studentNo, newFullName, newCourse, newSection, newSex);
         
