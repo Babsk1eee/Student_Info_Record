@@ -36,9 +36,25 @@ public class StudentData implements Serializable {
     public String getSex(){
         return sex;
     }
-    
+
+    public void setFullName(String fullName) {
+    this.fullName = fullName;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
 @Override
     public String toString() {
-        return studentNo + " | " + fullName + " | " + " | " + sex + " | " + course + " | " + section;
+        return studentNo + " | " + fullName + " | " + sex + " | " + course + " | " + section;
     }
 }

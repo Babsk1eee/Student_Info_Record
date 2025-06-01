@@ -32,7 +32,19 @@ public class Main{
                     display.searchStudent();
                 break;
                 case 4:
-                    display.searchStudent(); //please change display.searchStudent() to display.deleteStudent()
+                    System.out.println("[1] Edit Student");
+                    System.out.println("[2] Delete Student");
+                    System.out.print("Your choice: ");
+                    int subChoice = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+
+                    if (subChoice == 1) {
+                        display.editStudent();
+                    } else if (subChoice == 2) {
+                        display.deleteStudent();
+                    } else {
+                        System.out.println("Invalid choice.");
+                    }
                     break;
                 case 0:
                     System.out.println("Exiting the program...");
