@@ -93,6 +93,7 @@ public class Display {
         }
     }
 
+    // Method for deleting student information
     public void deleteStudent() {
         System.out.print("Enter Student No. to delete: ");
         String studentNo = scanner.nextLine();
